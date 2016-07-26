@@ -182,7 +182,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
     {
         $relation   = new Relation();
 
-        foreach ($manager->getRelations($model) as $_relation) {
+        foreach ($manager->getRelations(get_class($model)) as $_relation) {
             /** @type Model\Relation $_relation */
             $field  = $_relation->getFields();
             $ref    = $_relation->getReferencedFields();
