@@ -50,7 +50,7 @@ class Container implements \Ng\Registry\Interfaces\Container
             }
         }
 
-        if ($this->list[$key] instanceOf Registry) {
+        if (!$this->list[$key] instanceOf Registry) {
             return null;
         }
 
