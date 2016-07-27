@@ -13,6 +13,7 @@
 namespace Ng\Registry\Factory\Phalcon;
 
 
+use Ng\Phalcon\Models\Abstracts\NgModel;
 use Ng\Registry\Adapters\Registry;
 use Ng\Registry\Adapters\Relation;
 use Ng\Registry\Adapters\Schema;
@@ -52,13 +53,24 @@ class Builder implements \Ng\Registry\Interfaces\Builder
         /** @type Model $model */
         $model      = new $listPath[$key];
         $metaData   = new MetaData();
+        /** @type Model\Manager $manager */
         $manager    = $model->getModelsManager();
 
         $attributes = $metaData->getDataTypes($model);
         $notNull    = $metaData->getNotNullAttributes($model);
+        $except     = array();
+
+        if ($model instanceof NgModel) {
+            $except[] = $model::getPrimaryKey();
+            $except[] = $model::getCreatedByField();
+            $except[] = $model::getCreatedTimeField();
+            $except[] = $model::getUpdatedTimeField();
+            $except[] = $model::getDeletedField();
+            $except[] = $model::getDeletedTimeField();
+        }
 
         $schema     = self::buildSchema($attributes);
-        $validation = self::buildValidation($attributes, $notNull);
+        $validation = self::buildValidation($attributes, $notNull, $except);
         $relation   = self::buildRelation($manager, $model);
 
         return new Registry($schema, $validation, $relation);
@@ -155,11 +167,16 @@ class Builder implements \Ng\Registry\Interfaces\Builder
         return $schema;
     }
 
-    protected static function buildValidation(array $attributes, array $notNull)
-    {
+    protected static function buildValidation(
+        array $attributes, array $notNull, array $except
+    ) {
         $validation = new Validation();
 
         foreach ($attributes as $field => $type) {
+            if (in_array($field, $except)) {
+                continue;
+            }
+
             if (in_array($field, $notNull)) {
                 $v = new Detail($field, "presenceOf", new Validation\Option());
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
