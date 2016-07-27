@@ -49,9 +49,10 @@ class Builder implements \Ng\Registry\Interfaces\Builder
             return null;
         }
 
+        /** @type Model $model */
         $model      = new $listPath[$key];
         $metaData   = new MetaData();
-        $manager    = new Model\Manager();
+        $manager    = $model->getModelsManager();
 
         $attributes = $metaData->getDataTypes($model);
         $notNull    = $metaData->getNotNullAttributes($model);
@@ -183,6 +184,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
         $relation   = new Relation();
 
         foreach ($manager->getRelations(get_class($model)) as $_relation) {
+
             /** @type Model\Relation $_relation */
             $field  = $_relation->getFields();
             $ref    = $_relation->getReferencedFields();
@@ -200,8 +202,14 @@ class Builder implements \Ng\Registry\Interfaces\Builder
                     $type = Relation::TYPE_HASMANY;
                     break;
             }
+
+            $opt    = new Relation\Option();
+            if (isset($option["alias"])) {
+                $opt->setAlias($option["alias"]);
+            }
+
             $relation->addDetail(
-                new Relation\Detail($field, $type, $model, $ref, $option)
+                new Relation\Detail($field, $type, $model, $ref, $opt)
             );
         }
 
