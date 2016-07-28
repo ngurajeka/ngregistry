@@ -174,22 +174,27 @@ class Builder implements \Ng\Registry\Interfaces\Builder
         $validation = new Validation();
 
         foreach ($attributes as $field => $type) {
+            $option = new Validation\Option();
+
             if (in_array($field, $except)) {
                 continue;
             }
 
             if (in_array($field, $notNull)) {
-                $v = new Detail($field, "presenceOf", new Validation\Option());
+                $option->setMessage("Field is Required");
+                $v  = new Detail($field, "presenceOf", $option);
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
             }
 
             if ($type == Column::TYPE_DATE) {
-                $v = new Detail($field, "date", new Validation\Option());
+                $option->setMessage("Field Should Be Date Format")
+                $v  = new Detail($field, "date", $option);
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
             }
 
             if ($type == Column::TYPE_DATETIME) {
-                $v = new Detail($field, "datetime", new Validation\Option());
+                $option->setMessage("Field Should Be Date Time Format")
+                $v  = new Detail($field, "datetime", $option);
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
             }
         }
