@@ -187,13 +187,13 @@ class Builder implements \Ng\Registry\Interfaces\Builder
             }
 
             if ($type == Column::TYPE_DATE) {
-                $option->setMessage("Field Should Be Date Format")
+                $option->setMessage("Field Should Be Date Format");
                 $v  = new Detail($field, "date", $option);
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
             }
 
             if ($type == Column::TYPE_DATETIME) {
-                $option->setMessage("Field Should Be Date Time Format")
+                $option->setMessage("Field Should Be Date Time Format");
                 $v  = new Detail($field, "datetime", $option);
                 $validation->addValidation(Validation::ACTION_CREATE, $v);
             }
