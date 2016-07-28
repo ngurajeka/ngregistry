@@ -23,7 +23,7 @@ use Ng\Registry\Adapters\Validation\Detail;
 
 use Phalcon\Db\Column;
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\MetaData\Memory as MetaData;
+use Phalcon\Mvc\Model\MetaDataInterface as MetaData;
 
 /**
  * Builder
@@ -52,7 +52,8 @@ class Builder implements \Ng\Registry\Interfaces\Builder
 
         /** @type Model $model */
         $model      = new $listPath[$key];
-        $metaData   = new MetaData();
+        /** @type MetaData $metaData */
+        $metaData   = $model->getModelsMetaData();
         /** @type Model\Manager $manager */
         $manager    = $model->getModelsManager();
 
