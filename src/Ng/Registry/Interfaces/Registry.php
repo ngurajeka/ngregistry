@@ -25,6 +25,12 @@ namespace Ng\Registry\Interfaces;
 interface Registry
 {
     /**
+     * Get Model Path
+     *
+     * @return string
+     */
+    public function getPath();
+    /**
      * Get Schema
      *
      * @return Schema

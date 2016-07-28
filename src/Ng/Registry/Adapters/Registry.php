@@ -24,6 +24,7 @@ namespace Ng\Registry\Adapters;
  */
 class Registry implements \Ng\Registry\Interfaces\Registry
 {
+    protected $path;
     /** @type Schema $schema */
     protected $schema;
     /** @type Validation $validation */
@@ -32,11 +33,35 @@ class Registry implements \Ng\Registry\Interfaces\Registry
     protected $relation;
 
     public function __construct(
-        Schema $schema, Validation $validation, Relation $relation
+        $path, Schema $schema, Validation $validation, Relation $relation
     ) {
+        $this->setPath($path);
         $this->setSchema($schema);
         $this->setValidation($validation);
         $this->setRelation($relation);
+    }
+
+    /**
+     * Get Path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set Path
+     *
+     * @param string $path
+     *
+     * @return Registry
+     */
+    public function setPath($path)
+    {
+        $this->path         = $path;
+        return $this;
     }
 
     /**

@@ -73,7 +73,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
         $validation = self::buildValidation($attributes, $notNull, $except);
         $relation   = self::buildRelation($manager, $model);
 
-        return new Registry($schema, $validation, $relation);
+        return new Registry($listPath[$key], $schema, $validation, $relation);
     }
 
     protected static function checkModel($key, array $listPath)
