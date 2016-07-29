@@ -48,6 +48,32 @@ class Validation implements \Ng\Registry\Interfaces\Validation
     }
 
     /**
+     * Check If Validation was existed
+     *
+     * @param string $actionType
+     * @param string $validationType
+     *
+     * @return bool
+     */
+    public function isExist($actionType, $validationType)
+    {
+        if (!$this->hasValidation($actionType)) {
+            return false;
+        }
+
+        $result = false;
+        foreach ($this->getValidationByActionType($actionType) as $v) {
+            /** @type Detail $v */
+            if ($v->getType() == $validationType) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Get Validation by ActionType
      *
      * @param string $actionType

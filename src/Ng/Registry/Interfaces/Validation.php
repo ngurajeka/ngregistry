@@ -42,6 +42,16 @@ interface Validation
     );
 
     /**
+     * Check If Validation was existed
+     *
+     * @param string $actionType
+     * @param string $validationType
+     *
+     * @return bool
+     */
+    public function isExist($actionType, $validationType);
+
+    /**
      * Get Validation by ActionType
      *
      * @param string $actionType
