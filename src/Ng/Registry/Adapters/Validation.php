@@ -38,6 +38,11 @@ class Validation implements \Ng\Registry\Interfaces\Validation
      */
     public function addValidation(Detail $detail)
     {
+        // only add new validation, reject existing validation
+        if ($this->isExist($detail)) {
+            return $this;
+        }
+
         $this->validations[]   = $detail;
         return $this;
     }
