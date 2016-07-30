@@ -27,18 +27,30 @@ interface Option
     /**
      * Get Message of the Validation Detail Option
      *
-     * @return string
+     * @param string $key
+     *
+     * @return mixed
      */
-    public function getMessage();
+    public function get($key);
 
     /**
      * Set Message of the Validation Detail Option
      *
-     * @param string $message
+     * @param string $key
+     * @param mixed  $value
      *
      * @return Option
      */
-    public function setMessage($message);
+    public function set($key, $value);
+
+    /**
+     * Check if options key is exist
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function has($key);
 
     /**
      * Get All Available information about the Validation Detail Option as an array

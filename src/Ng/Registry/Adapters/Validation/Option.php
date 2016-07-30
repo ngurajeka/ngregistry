@@ -24,29 +24,48 @@ namespace Ng\Registry\Adapters\Validation;
  */
 class Option implements \Ng\Registry\Interfaces\Validation\Option
 {
-    protected $message;
+    protected $options = array();
 
     /**
      * Get Message of the Validation Detail Option
      *
-     * @return string
+     * @param string $key
+     *
+     * @return mixed|null
      */
-    public function getMessage()
+    public function get($key)
     {
-        return $this->message;
+        if (!$this->has($key)) {
+            return null;
+        }
+
+        return $this->options[$key];
     }
 
     /**
      * Set Message of the Validation Detail Option
      *
-     * @param string $message
+     * @param string $key
+     * @param mixed  $value
      *
      * @return Option
      */
-    public function setMessage($message)
+    public function set($key, $value)
     {
-        $this->message = $message;
+        $this->options[$key] = $value;
         return $this;
+    }
+
+    /**
+     * Check if options key is exist
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function has($key)
+    {
+        return isset($this->options[$key]);
     }
 
     /**
@@ -56,8 +75,10 @@ class Option implements \Ng\Registry\Interfaces\Validation\Option
      */
     public function toArray()
     {
-        return array(
-            "message" => $this->getMessage(),
-        );
+        if (!is_array($this->options)) {
+            return array();
+        }
+
+        return $this->options;
     }
 }

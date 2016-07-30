@@ -36,10 +36,32 @@ use Phalcon\Mvc\Model\MetaDataInterface as MetaData;
  */
 class Builder implements \Ng\Registry\Interfaces\Builder
 {
+    const VAL_TYPE_BETWEEN  = "between";
     const VAL_TYPE_EMAIL    = "email";
     const VAL_TYPE_DATE     = "date";
     const VAL_TYPE_DATETIME = "dateTime";
     const VAL_TYPE_PRESENCE = "presenceOf";
+    const VAL_TYPE_REGEX    = "regex";
+    const VAL_TYPE_URL      = "url";
+
+    const VAL_TYPE_CONFIRMATION = "confirmation";
+    const VAL_TYPE_EXCLUSIONIN  = "exclusionIn";
+    const VAL_TYPE_IDENTICAL    = "identical";
+    const VAL_TYPE_INCLUSIONIN  = "inclusionIn";
+    const VAL_TYPE_STRINGLENGTH = "stringLength";
+
+    const OPT_ACCEPTED  = "accepted";
+    const OPT_DOMAIN    = "domain";
+    const OPT_MAX       = "max";
+    const OPT_MAXIMUM   = "maximum";
+    const OPT_MESSAGE   = "message";
+    const OPT_MIN       = "min";
+    const OPT_MINIMUM   = "minimum";
+    const OPT_PATTERN   = "pattern";
+    const OPT_WITH      = "with";
+
+    const OPT_MESSAGEMAXIMUM = "messageMaximum";
+    const OPT_MESSAGEMINIMUM = "messageMinimum";
 
     /**
      * Build new Registry.
@@ -185,7 +207,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
 
             if (in_array($field, $notNull)) {
                 $option = new Validation\Option();
-                $option->setMessage("Field is Required");
+                $option->set(self::OPT_MESSAGE, "Field is Required");
                 $v  = new Detail($field, self::VAL_TYPE_PRESENCE, $option);
                 $validation->addValidation($v);
                 unset($option);
@@ -193,7 +215,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
 
             if ($type == Column::TYPE_DATE) {
                 $option = new Validation\Option();
-                $option->setMessage("Field Should Be Date Format");
+                $option->set(self::OPT_MESSAGE, "Field Should Be Date Format");
                 $v  = new Detail($field, self::VAL_TYPE_DATE, $option);
                 $validation->addValidation($v);
                 unset($option);
@@ -201,7 +223,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
 
             if ($type == Column::TYPE_DATETIME) {
                 $option = new Validation\Option();
-                $option->setMessage("Field Should Be Date Time Format");
+                $option->set(self::OPT_MESSAGE, "Field Should Be Date Time Format");
                 $v  = new Detail($field, self::VAL_TYPE_DATETIME, $option);
                 $validation->addValidation($v);
                 unset($option);
