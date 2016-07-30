@@ -26,79 +26,73 @@ use Ng\Registry\Interfaces\Validation\Detail;
  */
 class Validation implements \Ng\Registry\Interfaces\Validation
 {
+    /** @type Detail[] $validations */
     protected $validations = array();
 
     /**
      * Add New Validation
      *
-     * @param string $actionType
      * @param Detail $detail
      *
      * @return Validation
      */
-    public function addValidation(
-        $actionType=self::ACTION_CREATE, Detail $detail
-    ) {
-        if (is_null($this->getValidationByActionType($actionType))) {
-            $this->validations[$actionType] = array();
-        }
-
-        $this->validations[$actionType][]   = $detail;
+    public function addValidation(Detail $detail)
+    {
+        $this->validations[]   = $detail;
         return $this;
     }
 
     /**
      * Check If Validation was existed
      *
-     * @param string $actionType
-     * @param string $validationType
+     * @param Detail $validation
      *
      * @return bool
      */
-    public function isExist($actionType, $validationType)
+    public function isExist(Detail $validation)
     {
-        if (!$this->hasValidation($actionType)) {
+        if (!$this->hasValidation()) {
             return false;
         }
 
-        $result = false;
-        foreach ($this->getValidationByActionType($actionType) as $v) {
+        $exist = false;
+        foreach ($this->getValidation() as $v) {
             /** @type Detail $v */
-            if ($v->getType() == $validationType) {
-                $result = true;
+            if ($v->getType() <> $validation->getType()) {
+                continue;
+            }
+
+            if ($v->getField() == $validation->getField()) {
+                $exist = true;
                 break;
             }
         }
 
-        return $result;
+        return $exist;
     }
 
     /**
      * Get Validation by ActionType
      *
-     * @param string $actionType
-     *
      * @return Detail[]|null
      */
-    public function getValidationByActionType($actionType)
+    public function getValidation()
     {
-        if (!in_array($actionType, array_keys($this->validations))) {
-            return null;
+        if (!$this->hasValidation()) {
+            return array();
         }
 
-        return $this->validations[$actionType];
+        return $this->validations();
     }
 
     /**
      * Check if Container has Validation for spesific action
      *
-     * @param string $actionType
-     *
      * @return bool
      */
-    public function hasValidation($actionType)
+    public function hasValidation()
     {
-        return !is_null($this->getValidationByActionType($actionType));
+        return !is_null($this->validations) AND !empty($this->validations);
     }
 
     /**
@@ -108,18 +102,12 @@ class Validation implements \Ng\Registry\Interfaces\Validation
      */
     public function toArray()
     {
-        $validation = array();
+        $validations = array();
 
-        foreach (array_keys($this->validations) as $actionType) {
-            if (!$this->hasValidation($actionType)) {
-                continue;
-            }
-            $validations[$actionType][]     = array();
-            foreach ($this->getValidationByActionType($actionType) as $v) {
-                $validations[$actionType][] = $v->toArray();
-            }
+        foreach ($this->getValidation() as $v) {
+            $validations[] = $v->toArray();
         }
 
-        return $validation;
+        return $validations;
     }
 }

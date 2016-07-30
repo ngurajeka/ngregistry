@@ -36,6 +36,11 @@ use Phalcon\Mvc\Model\MetaDataInterface as MetaData;
  */
 class Builder implements \Ng\Registry\Interfaces\Builder
 {
+    const VAL_TYPE_EMAIL    = "email";
+    const VAL_TYPE_DATE     = "date";
+    const VAL_TYPE_DATETIME = "datetime";
+    const VAL_TYPE_PRESENCE = "presenceOf";
+
     /**
      * Build new Registry.
      *
@@ -181,24 +186,24 @@ class Builder implements \Ng\Registry\Interfaces\Builder
             if (in_array($field, $notNull)) {
                 $option = new Validation\Option();
                 $option->setMessage("Field is Required");
-                $v  = new Detail($field, "presenceOf", $option);
-                $validation->addValidation(Validation::ACTION_CREATE, $v);
+                $v  = new Detail($field, self::VAL_TYPE_PRESENCE, $option);
+                $validation->addValidation($v);
                 unset($option);
             }
 
             if ($type == Column::TYPE_DATE) {
                 $option = new Validation\Option();
                 $option->setMessage("Field Should Be Date Format");
-                $v  = new Detail($field, "date", $option);
-                $validation->addValidation(Validation::ACTION_CREATE, $v);
+                $v  = new Detail($field, self::VAL_TYPE_DATE, $option);
+                $validation->addValidation($v);
                 unset($option);
             }
 
             if ($type == Column::TYPE_DATETIME) {
                 $option = new Validation\Option();
                 $option->setMessage("Field Should Be Date Time Format");
-                $v  = new Detail($field, "datetime", $option);
-                $validation->addValidation(Validation::ACTION_CREATE, $v);
+                $v  = new Detail($field, self::VAL_TYPE_DATETIME, $option);
+                $validation->addValidation($v);
                 unset($option);
             }
         }

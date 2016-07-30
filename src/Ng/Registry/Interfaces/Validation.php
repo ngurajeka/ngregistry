@@ -26,48 +26,37 @@ use Ng\Registry\Interfaces\Validation\Detail;
  */
 interface Validation
 {
-    const ACTION_CREATE = "create";
-    const ACTION_UPDATE = "update";
-
     /**
      * Add New Validation
      *
-     * @param string $actionType
      * @param Detail $detail
      *
      * @return Validation
      */
-    public function addValidation(
-        $actionType=Validation::ACTION_CREATE, Detail $detail
-    );
+    public function addValidation(Detail $detail);
 
     /**
      * Check If Validation was existed
      *
-     * @param string $actionType
-     * @param string $validationType
+     * @param Detail $validation
      *
      * @return bool
      */
-    public function isExist($actionType, $validationType);
+    public function isExist(Detail $validation)
 
     /**
      * Get Validation by ActionType
      *
-     * @param string $actionType
-     *
      * @return Detail[]|null
      */
-    public function getValidationByActionType($actionType);
+    public function getValidation();
 
     /**
      * Check if Container has Validation for spesific action
      *
-     * @param string $actionType
-     *
      * @return bool
      */
-    public function hasValidation($actionType);
+    public function hasValidation();
 
     /**
      * Get All Available information about the ValidationDetail as an array
