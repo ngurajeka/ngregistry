@@ -82,7 +82,7 @@ class Validation implements \Ng\Registry\Interfaces\Validation
             return array();
         }
 
-        return $this->validations();
+        return $this->validations;
     }
 
     /**

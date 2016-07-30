@@ -42,7 +42,7 @@ interface Validation
      *
      * @return bool
      */
-    public function isExist(Detail $validation)
+    public function isExist(Detail $validation);
 
     /**
      * Get Validation by ActionType
