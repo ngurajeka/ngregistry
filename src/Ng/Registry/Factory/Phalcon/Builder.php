@@ -40,7 +40,6 @@ class Builder implements \Ng\Registry\Interfaces\Builder
     const VAL_TYPE_EMAIL    = "email";
     const VAL_TYPE_DATE     = "date";
     const VAL_TYPE_DATETIME = "dateTime";
-    const VAL_TYPE_FORMAT   = "format";
     const VAL_TYPE_PRESENCE = "presenceOf";
     const VAL_TYPE_REGEX    = "regex";
     const VAL_TYPE_URL      = "url";
@@ -53,6 +52,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
 
     const OPT_ACCEPTED  = "accepted";
     const OPT_DOMAIN    = "domain";
+    const OPT_FORMAT    = "format";
     const OPT_MAX       = "max";
     const OPT_MAXIMUM   = "maximum";
     const OPT_MESSAGE   = "message";
