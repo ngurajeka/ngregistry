@@ -54,6 +54,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
     const VAL_TYPE_STRINGLENGTH = "stringLength";
 
     const OPT_ACCEPTED  = "accepted";
+    const OPT_BIGGER    = "biggerThan";
     const OPT_DOMAIN    = "domain";
     const OPT_FORMAT    = "format";
     const OPT_MAX       = "max";
