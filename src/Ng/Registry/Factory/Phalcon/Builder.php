@@ -37,6 +37,7 @@ use Phalcon\Mvc\Model\MetaDataInterface as MetaData;
 class Builder implements \Ng\Registry\Interfaces\Builder
 {
     const VAL_TYPE_BETWEEN  = "between";
+    const VAL_TYPE_BIGGER   = "bigger";
     const VAL_TYPE_EMAIL    = "email";
     const VAL_TYPE_DATE     = "date";
     const VAL_TYPE_DATETIME = "dateTime";
