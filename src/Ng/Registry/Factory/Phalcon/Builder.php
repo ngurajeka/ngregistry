@@ -40,6 +40,7 @@ class Builder implements \Ng\Registry\Interfaces\Builder
     const VAL_TYPE_EMAIL    = "email";
     const VAL_TYPE_DATE     = "date";
     const VAL_TYPE_DATETIME = "dateTime";
+    const VAL_TYPE_DIGIT    = "digit";
     const VAL_TYPE_PRESENCE = "presenceOf";
     const VAL_TYPE_REGEX    = "regex";
     const VAL_TYPE_URL      = "url";

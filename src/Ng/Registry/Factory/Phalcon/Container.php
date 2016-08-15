@@ -50,6 +50,10 @@ class Container implements \Ng\Registry\Interfaces\Container
             }
         }
 
+        if (!isset($this->list[$key])) {
+            return null;
+        }
+
         if (!$this->list[$key] instanceOf Registry) {
             return null;
         }
