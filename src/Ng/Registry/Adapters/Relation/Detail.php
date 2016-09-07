@@ -13,6 +13,7 @@
 namespace Ng\Registry\Adapters\Relation;
 
 
+use Ng\Registry\Interfaces\Relation\Detail as NgDetail;
 use Ng\Registry\Interfaces\Relation\Option;
 
 /**
@@ -24,7 +25,7 @@ use Ng\Registry\Interfaces\Relation\Option;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Detail implements \Ng\Registry\Interfaces\Relation\Detail
+class Detail implements NgDetail
 {
     protected $field;
     protected $type;

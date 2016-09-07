@@ -13,6 +13,8 @@
 namespace Ng\Registry\Adapters\Relation;
 
 
+use Ng\Registry\Interfaces\Relation\Option as NgOption;
+
 /**
  * Relation Option
  *
@@ -22,7 +24,7 @@ namespace Ng\Registry\Adapters\Relation;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Option implements \Ng\Registry\Interfaces\Relation\Option
+class Option implements NgOption
 {
     protected $alias;
 

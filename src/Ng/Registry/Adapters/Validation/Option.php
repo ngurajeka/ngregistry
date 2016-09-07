@@ -13,6 +13,8 @@
 namespace Ng\Registry\Adapters\Validation;
 
 
+use Ng\Registry\Interfaces\Validation\Option as NgOption;
+
 /**
  * Validation Detail Option
  *
@@ -22,7 +24,7 @@ namespace Ng\Registry\Adapters\Validation;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Option implements \Ng\Registry\Interfaces\Validation\Option
+class Option implements NgOption
 {
     protected $options = array();
 

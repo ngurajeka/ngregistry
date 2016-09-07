@@ -13,6 +13,7 @@
 namespace Ng\Registry\Adapters;
 
 
+use Ng\Registry\Interfaces\Validation as NgValidation;
 use Ng\Registry\Interfaces\Validation\Detail;
 
 /**
@@ -24,7 +25,7 @@ use Ng\Registry\Interfaces\Validation\Detail;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Validation implements \Ng\Registry\Interfaces\Validation
+class Validation implements NgValidation
 {
     /** @type Detail[] $validations */
     protected $validations = array();

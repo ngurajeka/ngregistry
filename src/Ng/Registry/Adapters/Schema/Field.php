@@ -13,6 +13,8 @@
 namespace Ng\Registry\Adapters\Schema;
 
 
+use Ng\Registry\Interfaces\Schema\Field as NgField;
+
 /**
  * Field
  *
@@ -22,7 +24,7 @@ namespace Ng\Registry\Adapters\Schema;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Field implements \Ng\Registry\Interfaces\Schema\Field
+class Field implements NgField
 {
     protected $name;
     protected $label;

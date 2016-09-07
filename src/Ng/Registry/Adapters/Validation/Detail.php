@@ -13,6 +13,7 @@
 namespace Ng\Registry\Adapters\Validation;
 
 
+use Ng\Registry\Interfaces\Validation\Detail as NgDetail;
 use Ng\Registry\Interfaces\Validation\Option;
 
 /**
@@ -24,7 +25,7 @@ use Ng\Registry\Interfaces\Validation\Option;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Detail implements \Ng\Registry\Interfaces\Validation\Detail
+class Detail implements NgDetail
 {
     protected $field;
     /** @tyep Option $option */

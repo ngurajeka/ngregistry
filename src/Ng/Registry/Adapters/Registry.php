@@ -13,6 +13,8 @@
 namespace Ng\Registry\Adapters;
 
 
+use \Ng\Registry\Interfaces\Registry as NgRegistry;
+
 /**
  * Registry
  *
@@ -22,7 +24,7 @@ namespace Ng\Registry\Adapters;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Registry implements \Ng\Registry\Interfaces\Registry
+class Registry implements NgRegistry
 {
     protected $path;
     /** @type Schema $schema */

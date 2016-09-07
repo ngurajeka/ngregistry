@@ -13,6 +13,7 @@
 namespace Ng\Registry\Adapters;
 
 
+use Ng\Registry\Interfaces\Schema as NgSchema;
 use Ng\Registry\Interfaces\Schema\Field;
 
 /**
@@ -24,7 +25,7 @@ use Ng\Registry\Interfaces\Schema\Field;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Schema implements \Ng\Registry\Interfaces\Schema
+class Schema implements NgSchema
 {
     /** @type Field[] $fields */
     protected $fields = array();

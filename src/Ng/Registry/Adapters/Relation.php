@@ -13,6 +13,7 @@
 namespace Ng\Registry\Adapters;
 
 
+use Ng\Registry\Interfaces\Relation as NgRelation;
 use Ng\Registry\Interfaces\Relation\Detail;
 
 /**
@@ -24,7 +25,7 @@ use Ng\Registry\Interfaces\Relation\Detail;
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     https://github.com/ngurajeka/php-registry
  */
-class Relation implements \Ng\Registry\Interfaces\Relation
+class Relation implements NgRelation
 {
     /** @type Detail[] $relations */
     protected $relations = array();
