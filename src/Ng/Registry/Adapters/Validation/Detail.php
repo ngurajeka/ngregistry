@@ -14,7 +14,7 @@ namespace Ng\Registry\Adapters\Validation;
 
 
 use Ng\Registry\Interfaces\Validation\Detail as NgDetail;
-use Ng\Registry\Interfaces\Validation\Option;
+use Ng\Registry\Interfaces\Validation\Option as NgOption;
 
 /**
  * Validation Detail
@@ -28,11 +28,11 @@ use Ng\Registry\Interfaces\Validation\Option;
 class Detail implements NgDetail
 {
     protected $field;
-    /** @tyep Option $option */
+    /** @tyep NgOption $option */
     protected $option;
     protected $type;
 
-    public function __construct($field, $type, Option $option)
+    public function __construct($field, $type, NgOption $option)
     {
         $this->setField($field);
         $this->setType($type);
@@ -98,7 +98,7 @@ class Detail implements NgDetail
     /**
      * Get Options of the Validation Detail
      *
-     * @return Option
+     * @return NgOption
      */
     public function getOption()
     {
@@ -108,11 +108,11 @@ class Detail implements NgDetail
     /**
      * Set Option of the Validation Detail
      *
-     * @param Option $option
+     * @param NgOption $option
      *
      * @return Detail
      */
-    public function setOption(Option $option)
+    public function setOption(NgOption $option)
     {
         $this->option   = $option;
         return $this;

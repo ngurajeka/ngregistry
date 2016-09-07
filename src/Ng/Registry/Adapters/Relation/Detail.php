@@ -14,7 +14,7 @@ namespace Ng\Registry\Adapters\Relation;
 
 
 use Ng\Registry\Interfaces\Relation\Detail as NgDetail;
-use Ng\Registry\Interfaces\Relation\Option;
+use Ng\Registry\Interfaces\Relation\Option as NgOption;
 
 /**
  * Relation Detail
@@ -31,10 +31,11 @@ class Detail implements NgDetail
     protected $type;
     protected $model;
     protected $referencedField;
+	/** @var NgOption */
     protected $option;
 
     public function __construct(
-        $field, $type, $model, $referencedField, Option $option=null
+        $field, $type, $model, $referencedField, NgOption $option=null
     ) {
         $this->setField($field);
         $this->setType($type);
@@ -148,7 +149,7 @@ class Detail implements NgDetail
     /**
      * Get Option of The Relation Detail
      *
-     * @return Option
+     * @return NgOption
      */
     public function getOption()
     {
@@ -158,11 +159,11 @@ class Detail implements NgDetail
     /**
      * Set Option of The Relation Detail
      *
-     * @param Option $option
+     * @param NgOption $option
      *
      * @return Detail
      */
-    public function setOption(Option $option)
+    public function setOption(NgOption $option)
     {
         $this->option       = $option;
         return $this;
