@@ -132,7 +132,7 @@ class Detail implements NgDetail
      */
     public function setReferencedField($referencedField)
     {
-        $this->field        = $referencedField;
+        $this->referencedField	= $referencedField;
         return $this;
     }
 
